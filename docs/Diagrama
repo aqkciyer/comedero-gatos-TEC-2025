@@ -1,1 +1,46 @@
-
+{
+  "version": 1,
+  "author": "Yerick Araya Quesada",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -1.66, "left": -5.9, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -130.4, "left": -7.38, "attrs": {} },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": 265,
+      "left": -18.2,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 66,
+      "left": 169.8,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 109.55,
+      "left": 115.2,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v0", "h-28.8" ] ],
+    [ "pir1:OUT", "esp:23", "green", [ "v28.8", "h76.66", "v48" ] ],
+    [ "pir1:GND", "esp:GND.2", "black", [ "v19.2", "h76.54", "v48" ] ],
+    [ "servo1:PWM", "esp:13", "green", [ "v-9.6", "h-67.4", "v-67.2" ] ],
+    [ "servo1:GND", "esp:GND.1", "black", [ "v-19.2", "h57.6", "v192", "h-172.8", "v-220.8" ] ],
+    [ "esp:5V", "servo1:V+", "red", [ "h1.29", "v20.86", "h67.2" ] ],
+    [ "led1:C", "esp:GND.3", "black", [ "h0" ] ],
+    [ "r1:2", "led1:A", "cyan", [ "v0" ] ],
+    [ "r1:1", "esp:4", "cyan", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
